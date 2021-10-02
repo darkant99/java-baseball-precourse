@@ -15,6 +15,9 @@ public enum GameResult {
         if (thisIndex == -1 || thatIndex == -1) {
             return NOTHING;
         }
-        return thisIndex == thatIndex ? STRIKE : BALL;
+        if (thisIndex == thatIndex) {
+            return STRIKE;
+        }
+        return BALL;
     }
 }

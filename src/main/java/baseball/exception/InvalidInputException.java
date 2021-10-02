@@ -1,6 +1,6 @@
 package baseball.exception;
 
-public class InvalidInputException extends IllegalArgumentException {
+public class InvalidInputException extends RuntimeException {
     public InvalidInputException() {
         super(ErrorMessage.INVALID_INPUT.message());
     }

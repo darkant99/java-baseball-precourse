@@ -1,6 +1,6 @@
 package baseball.exception;
 
-public class InvalidBallsSizeException extends IllegalArgumentException {
+public class InvalidBallsSizeException extends RuntimeException {
     public InvalidBallsSizeException(ErrorMessage errorMessage) {
         super(errorMessage.message());
     }
