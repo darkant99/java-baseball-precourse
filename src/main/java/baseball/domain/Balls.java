@@ -3,7 +3,9 @@ package baseball.domain;
 import baseball.exception.InvalidBallsSizeException;
 import nextstep.utils.Randoms;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 public class Balls {
     public static final int NORMAL_SIZE = 3;
@@ -16,21 +18,33 @@ public class Balls {
         this.balls = balls;
     }
 
+    private void validateSize(final List<Ball> balls) {
+        if (balls.size() != NORMAL_SIZE || new HashSet<>(balls).size() != NORMAL_SIZE) {
+            throw new InvalidBallsSizeException();
+        }
+    }
+
     /**
      * 중복된 수 없이 랜덤한 3개의 Ball로 구성된 Balls를 반환한다.
      * */
     public static Balls random() {
         List<Ball> balls = new ArrayList<>();
         while(new HashSet<>(balls).size() < 3) {
-            Ball iBall = Ball.of(
-                    Randoms.pickNumberInRange(Ball.MIN_NUMBER, Ball.MAX_NUMBER)
-            );
-            balls.add(iBall);
+            addRandomBall(balls);
         }
 
-        return new Balls(
-                new ArrayList<>(balls)
+        return new Balls(balls);
+    }
+
+    private static void addRandomBall(List<Ball> balls) {
+        Ball newBall = Ball.of(
+                Randoms.pickNumberInRange(Ball.MIN_NUMBER, Ball.MAX_NUMBER)
         );
+        if (balls.contains(newBall)) {
+            addRandomBall(balls); // 이미 존재하는 볼이라면 재귀 호출
+            return;
+        }
+        balls.add(newBall);
     }
 
     public static Balls of(String ballNumbers) {
@@ -39,17 +53,9 @@ public class Balls {
             int iNumber = Integer.parseInt(
                     String.valueOf(iNumberOneLetter)
             );
-
             balls.add(Ball.of(iNumber));
-
         }
         return new Balls(balls);
-    }
-
-    private void validateSize(final List<Ball> balls) {
-        if (new HashSet<>(balls).size() != NORMAL_SIZE) {
-            throw new InvalidBallsSizeException();
-        }
     }
 
     /**

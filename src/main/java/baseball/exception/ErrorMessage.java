@@ -4,6 +4,7 @@ import baseball.domain.Ball;
 import baseball.domain.Balls;
 
 public enum ErrorMessage {
+    INVALID_INPUT("잘못된 입력 입니다. 다시 입력 해주세요."),
     INVALID_BALLS_SIZE(
             String.format(
                     "공의 수는 %d개로 입력 해주세요.",

@@ -1,8 +1,9 @@
 package baseball.domain;
 
-import baseball.exception.InvalidBallsSizeException;
-
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class GameResults implements Iterable<Map.Entry<GameResult, Integer>> {
     private final Map<GameResult, Integer> countEachResult;

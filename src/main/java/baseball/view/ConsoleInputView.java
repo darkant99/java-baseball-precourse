@@ -10,11 +10,10 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
-    public boolean inputGameContinue() {
+    public String inputGameContinue() {
         System.out.println(GameText.INPUT_GAME_CONTINUE.text());
 
-        return Console.readLine()
-                .equals("1");
+        return Console.readLine();
     }
 
     private enum GameText {
