@@ -23,6 +23,7 @@ public class BallsTest {
 
     @DisplayName("생성자 InvalidBallsSizeException 테스트")
     @ValueSource(strings= {
+            "1143",
             "113",
             "12"
     })

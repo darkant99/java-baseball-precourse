@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class Ball implements Comparable<Ball> {
+public class Ball {
     public static final int MIN_NUMBER = 1;
     public static final int MAX_NUMBER = 9;
 
@@ -56,10 +56,5 @@ public class Ball implements Comparable<Ball> {
     @Override
     public int hashCode() {
         return Objects.hash(number);
-    }
-
-    @Override
-    public int compareTo(final Ball o) {
-        return Integer.compare(this.number, o.number);
     }
 }
