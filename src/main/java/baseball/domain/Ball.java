@@ -5,6 +5,7 @@ import baseball.exception.OutOfValueBoundsException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Ball {
     public static final int MIN_NUMBER = 1;
@@ -35,5 +36,22 @@ public class Ball {
         if (!cached.containsKey(number)) {
             throw new OutOfValueBoundsException(ErrorMessage.OUT_OF_BALL_NUMBER_BOUNDS);
         }
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Ball ball = (Ball) o;
+        return number == ball.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }

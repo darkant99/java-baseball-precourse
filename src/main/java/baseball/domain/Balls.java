@@ -2,7 +2,9 @@ package baseball.domain;
 
 import baseball.exception.InvalidBallsSizeException;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 public class Balls {
     public static final int NORMAL_SIZE = 3;
@@ -16,7 +18,7 @@ public class Balls {
     }
 
     private void validateSize(final List<Ball> balls) {
-        if (balls.size() != NORMAL_SIZE) {
+        if (new HashSet<>(balls).size() != NORMAL_SIZE) {
             throw new InvalidBallsSizeException();
         }
     }
