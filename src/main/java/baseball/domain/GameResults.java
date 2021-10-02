@@ -1,15 +1,16 @@
 package baseball.domain;
 
+import java.util.List;
+import java.util.Map;
+
 public class GameResults {
-    public int strike() {
-        return 0;
+    private final Map<GameResult, Integer> countEachResult;
+
+    public GameResults(final Map<GameResult, Integer> countEachResult) {
+        this.countEachResult = countEachResult;
     }
 
-    public int ball() {
-        return 0;
-    }
-
-    public int nothing() {
-        return 0;
+    public int score(final GameResult expertResult) {
+        return -1;
     }
 }

@@ -22,51 +22,25 @@ public class BallsTest {
         return new Balls(balls);
     }
 
-    @DisplayName("Balls matches 테스트 - 스트라이크 반환 테스트")
+    @DisplayName("Balls matches 테스트 - 결과 반환 테스트")
     @CsvSource(
-            value = "1,2,3=1,3,2=1",
+            value = {
+                    "1,2,3=1,3,2=STRIKE=1",
+                    "1,2,3=1,3,2=BALL=2",
+                    "1,2,3=1,3,2=NOTHING=0"
+            },
             delimiter = '='
     )
     @ParameterizedTest
     void matchesStrikeTest(String userBallTemplate, String computerBallTemplate,
-                           int expectCount) {
+                           String gameResultName, int expectCount) {
         Balls computerBalls = newBalls(computerBallTemplate);
         Balls userBalls = newBalls(userBallTemplate);
 
         GameResults result = computerBalls.matches(userBalls);
-        assertThat(result.strike())
-                .isEqualTo(expectCount);
-    }
+        GameResult expertResult = GameResult.valueOf(gameResultName);
 
-    @DisplayName("Balls matches 테스트 - 볼 반환 테스트")
-    @CsvSource(
-            value = "1,2,3=1,3,2=2",
-            delimiter = '='
-    )
-    @ParameterizedTest
-    void matchesBallTest(String userBallTemplate, String computerBallTemplate,
-                           int expectCount) {
-        Balls computerBalls = newBalls(computerBallTemplate);
-        Balls userBalls = newBalls(userBallTemplate);
-
-        GameResults result = computerBalls.matches(userBalls);
-        assertThat(result.ball())
-                .isEqualTo(expectCount);
-    }
-
-    @DisplayName("Balls matches 테스트 - 낫싱 반환 테스트")
-    @CsvSource(
-            value = "1,2,3=1,3,2=1=0",
-            delimiter = '='
-    )
-    @ParameterizedTest
-    void matchesNothingTest(String userBallTemplate, String computerBallTemplate,
-                           int expectCount) {
-        Balls computerBalls = newBalls(computerBallTemplate);
-        Balls userBalls = newBalls(userBallTemplate);
-
-        GameResults result = computerBalls.matches(userBalls);
-        assertThat(result.nothing())
+        assertThat(result.score(expertResult))
                 .isEqualTo(expectCount);
     }
 }

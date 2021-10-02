@@ -1,15 +1,27 @@
 package baseball.domain;
 
+import baseball.exception.InvalidBallsSizeException;
+
 import java.util.List;
 
 public class Balls {
-    private Ball balls;
+    public static final int NORMAL_SIZE = 3;
 
-    public Balls(final List<Ball> asList) {
+    private final List<Ball> balls;
 
+    public Balls(final List<Ball> balls) {
+        validateSize(balls);
+
+        this.balls = balls;
     }
 
-    public GameResults matches(final Balls userBalls) {
-        return new GameResults();
+    private void validateSize(final List<Ball> balls) {
+        if (balls.size() != NORMAL_SIZE) {
+            throw new InvalidBallsSizeException();
+        }
+    }
+
+    public GameResults matches(final Balls balls) {
+        return new GameResults(null);
     }
 }
