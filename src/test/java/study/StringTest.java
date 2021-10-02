@@ -13,4 +13,12 @@ public class StringTest {
                 "1,2".split(",")
         ).containsExactly("1", "2");
     }
+
+    @DisplayName("1을 ,로 split 했을때 1만을 포함하는 배열이 반환되는지 확인")
+    @Test
+    void splitTest2() {
+        assertThat(
+                "1".split(",")
+        ).containsExactly("1");
+    }
 }
