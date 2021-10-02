@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BallTest {
     @DisplayName("Ball.of 정상 생성 테스트")
     @ValueSource(ints = {
-            1, 9
+            1, 4, 9
     })
     @ParameterizedTest
     void ofTest(int number) {

@@ -14,21 +14,22 @@ public class BallsTest {
     @DisplayName("생성자 테스트 - Ball은 중복되지 않는 3개의 수로 이루어져야 한다.")
     @ValueSource(strings= {
             "123",
-            "456"
+            "456",
+            "789"
     })
     @ParameterizedTest
-    void ctorTest(String ballTemplate) {
+    void ofTest(String ballTemplate) {
         assertDoesNotThrow(() -> Balls.of(ballTemplate));
     }
 
     @DisplayName("생성자 InvalidBallsSizeException 테스트")
     @ValueSource(strings= {
-            "1143",
-            "113",
-            "12"
+            "1143", // 중복을 제외하면 3개 이지만 총 4개 숫자 입력
+            "113",  // 중복을 제외한 갯수 2개
+            "12"    // 갯수 2개
     })
     @ParameterizedTest
-    void ctorInvalidBallsSizeExceptionTest(String ballTemplate) {
+    void ofInvalidBallsSizeExceptionTest(String ballTemplate) {
         assertThatThrownBy(() -> Balls.of(ballTemplate))
                 .isInstanceOf(InvalidBallsSizeException.class);
     }

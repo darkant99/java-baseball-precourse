@@ -54,6 +54,7 @@ class GameResultsTest {
             value = {
                     "STRIKE,STRIKE,STRIKE=true",
                     "STRIKE,STRIKE,BALL=false",
+                    "BALL,BALL,BALL=false",
             },
             delimiter = '='
     )
