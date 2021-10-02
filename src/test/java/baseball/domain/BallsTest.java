@@ -2,6 +2,7 @@ package baseball.domain;
 
 import baseball.exception.InvalidBallsSizeException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -65,5 +66,11 @@ public class BallsTest {
 
         assertThat(result.score(expertResult))
                 .isEqualTo(expectCount);
+    }
+
+    @DisplayName("Balls random 테스트")
+    @Test
+    void randomTest() {
+        assertDoesNotThrow(Balls::random);
     }
 }
