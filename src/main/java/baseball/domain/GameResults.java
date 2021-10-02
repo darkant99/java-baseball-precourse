@@ -3,10 +3,11 @@ package baseball.domain;
 import baseball.exception.InvalidBallsSizeException;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class GameResults {
+public class GameResults implements Iterable<Map.Entry<GameResult, Integer>> {
     private final Map<GameResult, Integer> countEachResult;
 
     private GameResults(final Map<GameResult, Integer> countEachResult) {
@@ -53,11 +54,23 @@ public class GameResults {
         return countEachResult.get(GameResult.STRIKE) == allSize();
     }
 
+    /**
+     * 모든 GameResult가 낫싱인지 확인 한다.
+     * */
+    public boolean isAllNothing() {
+        return countEachResult.get(GameResult.NOTHING) == allSize();
+    }
+
     private int allSize() {
         int sumValue = 0;
         for (int iCount : countEachResult.values()) {
             sumValue += iCount;
         }
         return sumValue;
+    }
+
+    @Override
+    public Iterator<Map.Entry<GameResult, Integer>> iterator() {
+        return countEachResult.entrySet().iterator();
     }
 }

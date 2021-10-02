@@ -28,13 +28,31 @@ public class Balls {
      * 중복된 수 없이 랜덤한 3개의 Ball로 구성된 Balls를 반환한다.
      * */
     public synchronized static Balls random() {
-        //noinspection ComparatorMethodParameterNotUsed
-        BALL_TEMPLATE.sort((o1, o2) -> Randoms.pickNumberInRange(-1, 1));
+        Set<Ball> balls = new HashSet<>();
+        while(balls.size() < 3) {
+            Ball iBall = Ball.of(
+                    Randoms.pickNumberInRange(Ball.MIN_NUMBER, Ball.MAX_NUMBER)
+            );
+            balls.add(iBall);
+        }
 
-        return new Balls(BALL_TEMPLATE.subList(0, 3));
+        return new Balls(
+                new ArrayList<>(balls)
+        );
     }
 
-    public static Balls of(List<Ball> balls) {
+    public static Balls of(String ballNumbers) {
+        List<Ball> balls = new ArrayList<>();
+        for (char iNumberOneLetter : ballNumbers.toCharArray()) {
+            int iNumber = Integer.parseInt(
+                    String.valueOf(iNumberOneLetter)
+            );
+
+            balls.add(
+                    Ball.of(iNumber)
+            );
+
+        }
         return new Balls(balls);
     }
 

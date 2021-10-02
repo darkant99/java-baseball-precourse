@@ -15,51 +15,41 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class BallsTest {
-    private Balls newBalls(String ballTemplate) {
-        List<Ball> balls = new ArrayList<>();
-        for (String iBallNumberString : ballTemplate.split(",")) {
-            Ball iBall = Ball.of(
-                    Integer.parseInt(iBallNumberString)
-            );
-            balls.add(iBall);
-        }
-
-        return Balls.of(balls);
-    }
-
     @DisplayName("생성자 테스트 - Ball은 중복되지 않는 3개의 수로 이루어져야 한다.")
     @ValueSource(strings= {
-            "1,2,3",
-            "4,5,6"
+            "123",
+            "456"
     })
+    @ParameterizedTest
     void ctorTest(String ballTemplate) {
-        assertDoesNotThrow(() -> newBalls(ballTemplate));
+        assertDoesNotThrow(() -> Balls.of(ballTemplate));
     }
 
     @DisplayName("생성자 InvalidBallsSizeException 테스트")
     @ValueSource(strings= {
-            "1,1,3",
-            "1,2"
+            "113",
+            "12"
     })
     void ctorInvalidBallsSizeExceptionTest(String ballTemplate) {
-        assertThatThrownBy(() -> newBalls(ballTemplate))
+        assertThatThrownBy(() -> Balls.of(ballTemplate))
                 .isInstanceOf(InvalidBallsSizeException.class);
     }
 
     @DisplayName("Balls matches 테스트 - 결과 반환 테스트")
     @CsvSource(
             value = {
-                    "1,2,3=1,3,2=STRIKE=1",
-                    "1,2,3=1,3,2=BALL=2",
-                    "1,2,3=1,3,2=NOTHING=0"
+                    "123=123=STRIKE=3",
+                    "123=132=STRIKE=1",
+                    "123=132=BALL=2",
+                    "123=132=NOTHING=0"
             },
             delimiter = '='
     )
     @ParameterizedTest
     void matchesStrikeTest(String userBallTemplate, String computerBallTemplate,
                            String gameResultName, int expectCount) {
-        Balls computerBalls = newBalls(computerBallTemplate);
-        Balls userBalls = newBalls(userBallTemplate);
+        Balls computerBalls = Balls.of(computerBallTemplate);
+        Balls userBalls = Balls.of(userBallTemplate);
 
         GameResults result = computerBalls.matches(userBalls);
         GameResult expertResult = GameResult.valueOf(gameResultName);
@@ -68,7 +58,7 @@ public class BallsTest {
                 .isEqualTo(expectCount);
     }
 
-    @DisplayName("Balls random 테스트")
+    @DisplayName("Balls random 테스트 - 랜덤한 수가 서로 중복하지 않게 3개 뽑히는지 확인")
     @ValueSource(ints = {
             1000
     })
