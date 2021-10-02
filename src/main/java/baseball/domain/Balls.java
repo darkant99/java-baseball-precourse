@@ -9,7 +9,7 @@ public class Balls {
 
     }
 
-    public GameResult matches(final Balls userBalls) {
-        return new GameResult();
+    public GameResults matches(final Balls userBalls) {
+        return new GameResults();
     }
 }

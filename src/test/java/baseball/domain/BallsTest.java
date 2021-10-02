@@ -33,7 +33,7 @@ public class BallsTest {
         Balls computerBalls = newBalls(computerBallTemplate);
         Balls userBalls = newBalls(userBallTemplate);
 
-        GameResult result = computerBalls.matches(userBalls);
+        GameResults result = computerBalls.matches(userBalls);
         assertThat(result.strike())
                 .isEqualTo(expectCount);
     }
@@ -49,7 +49,7 @@ public class BallsTest {
         Balls computerBalls = newBalls(computerBallTemplate);
         Balls userBalls = newBalls(userBallTemplate);
 
-        GameResult result = computerBalls.matches(userBalls);
+        GameResults result = computerBalls.matches(userBalls);
         assertThat(result.ball())
                 .isEqualTo(expectCount);
     }
@@ -65,7 +65,7 @@ public class BallsTest {
         Balls computerBalls = newBalls(computerBallTemplate);
         Balls userBalls = newBalls(userBallTemplate);
 
-        GameResult result = computerBalls.matches(userBalls);
+        GameResults result = computerBalls.matches(userBalls);
         assertThat(result.nothing())
                 .isEqualTo(expectCount);
     }
