@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import baseball.exception.InvalidBallsSizeException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +13,9 @@ public class GameResults {
         this.countEachResult = countEachResult;
     }
 
+    /**
+     * GameResult별 갯수를 그룹화 한다.
+     * */
     public static GameResults of(final List<GameResult> results) {
         Map<GameResult, Integer> countEachResult = newCountEachResult();
 
@@ -34,10 +39,16 @@ public class GameResults {
         countEachResult.put(gameResult, currentCount + 1);
     }
 
+    /**
+     * GameResult별 갯수를 반환
+     * */
     public int score(final GameResult expertResult) {
         return countEachResult.get(expertResult);
     }
 
+    /**
+     * 모든 GameResult가 스트라이크인지 확인 한다.
+     * */
     public boolean isAllStrike() {
         return countEachResult.get(GameResult.STRIKE) == allSize();
     }

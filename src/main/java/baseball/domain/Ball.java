@@ -26,6 +26,9 @@ public class Ball {
         this.number = number;
     }
 
+    /**
+     * int 값을 포장한 Ball를 반환 한다.
+     * */
     public static Ball of(final int number) {
         validateNumberBounds(number);
 
