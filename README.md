@@ -17,7 +17,7 @@
 [X] "abc" 값이 주어졌을때 charAt을 사용해 특정 위치의 문자를 잘 가져오는지 확인
 [X] 문자열의 길이를 벗어나면 StringIndexOutOfBoundsException이 발생하는지 확인
 
-[] Set의 size를 사용해 Set의 크기를 확인
+[X] Set의 size를 사용해 Set의 크기를 확인
 [] Set에 contains를 사용해 1,2,3 값이 존재하는지 확인
 [] 입력값을 바꿀 수 있는 contains 테스트 작성
 
