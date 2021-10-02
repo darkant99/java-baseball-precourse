@@ -12,16 +12,21 @@ public class GameResults {
     }
 
     public static GameResults of(final List<GameResult> results) {
-        Map<GameResult, Integer> countEachResult = new HashMap<>();
-
-        for (GameResult iGameResult : GameResult.values()) {
-            countEachResult.put(iGameResult, 0);
-        }
+        Map<GameResult, Integer> countEachResult = newCountEachResult();
 
         for (GameResult iGameResult : results) {
             increaseResultCount(countEachResult, iGameResult);
         }
         return new GameResults(countEachResult);
+    }
+
+    private static Map<GameResult, Integer> newCountEachResult() {
+        Map<GameResult, Integer> countEachResult = new HashMap<>();
+
+        for (GameResult iGameResult : GameResult.values()) {
+            countEachResult.put(iGameResult, 0);
+        }
+        return countEachResult;
     }
 
     private static void increaseResultCount(Map<GameResult, Integer> countEachResult, GameResult gameResult) {
@@ -31,5 +36,17 @@ public class GameResults {
 
     public int score(final GameResult expertResult) {
         return countEachResult.get(expertResult);
+    }
+
+    public boolean isAllStrike() {
+        return countEachResult.get(GameResult.STRIKE) == allSize();
+    }
+
+    private int allSize() {
+        int sumValue = 0;
+        for (int iCount : countEachResult.values()) {
+            sumValue += iCount;
+        }
+        return sumValue;
     }
 }

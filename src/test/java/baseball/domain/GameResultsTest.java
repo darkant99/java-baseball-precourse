@@ -21,7 +21,7 @@ class GameResultsTest {
         return GameResults.of(gameResults);
     }
 
-    @DisplayName("GameResults score 테스트")
+    @DisplayName("GameResults.score 테스트")
     @CsvSource(
             value = {
                     "STRIKE,STRIKE,STRIKE=STRIKE=3",
@@ -47,5 +47,19 @@ class GameResultsTest {
         assertThat(
                 gameResults.score(expertResult)
         ).isEqualTo(expertCount);
+    }
+
+    @DisplayName("GameResults.isAllStrike 테스트")
+    @CsvSource(
+            value = {
+                    "STRIKE,STRIKE,STRIKE=true",
+                    "STRIKE,STRIKE,BALL=false",
+            },
+            delimiter = '='
+    )
+    @ParameterizedTest
+    void isAllStrikeTest(String resultsTemplate, boolean expert) {
+        assertThat(newGameResults(resultsTemplate).isAllStrike())
+                .isEqualTo(expert);
     }
 }

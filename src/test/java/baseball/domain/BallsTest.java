@@ -24,7 +24,7 @@ public class BallsTest {
             balls.add(iBall);
         }
 
-        return new Balls(balls);
+        return Balls.of(balls);
     }
 
     @DisplayName("생성자 테스트 - Ball은 중복되지 않는 3개의 수로 이루어져야 한다.")
@@ -69,8 +69,13 @@ public class BallsTest {
     }
 
     @DisplayName("Balls random 테스트")
-    @Test
-    void randomTest() {
-        assertDoesNotThrow(Balls::random);
+    @ValueSource(ints = {
+            1000
+    })
+    @ParameterizedTest
+    void randomTest(int testSize) {
+        for (int i = 0; i < testSize; i++) {
+            assertDoesNotThrow(Balls::random);
+        }
     }
 }
