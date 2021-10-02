@@ -21,4 +21,12 @@ public class StringTest {
                 "1".split(",")
         ).containsExactly("1");
     }
+
+    @DisplayName("(1,2) 값이 주어졋을때 substring을 활용해 ()를 제거 후 1,2가 반환 되는지 확인")
+    @Test
+    void substringTest() {
+        String actual = "(1,2)";
+        assertThat(actual.substring(1, actual.length() - 1))
+                .isEqualTo("1,2");
+    }
 }
