@@ -40,9 +40,7 @@ public class Balls {
                     String.valueOf(iNumberOneLetter)
             );
 
-            balls.add(
-                    Ball.of(iNumber)
-            );
+            balls.add(Ball.of(iNumber));
 
         }
         return new Balls(balls);

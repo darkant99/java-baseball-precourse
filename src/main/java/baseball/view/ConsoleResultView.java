@@ -23,7 +23,10 @@ public class ConsoleResultView implements ResultView {
         for (Map.Entry<GameResult, Integer> iGameResultAndCount : gameResults) {
             addGameResultText(texts, iGameResultAndCount);
         }
+        printJoinedText(texts);
+    }
 
+    private void printJoinedText(List<String> texts) {
         String joinedText = String.join(SPACE, texts);
         System.out.println(joinedText);
     }
@@ -37,14 +40,12 @@ public class ConsoleResultView implements ResultView {
         GameResult gameResult = entry.getKey();
         int count = entry.getValue();
 
-        // 낫싱은 표현하지 않는다.
-        if (gameResult == GameResult.NOTHING || count <= 0) {
+        if (gameResult == GameResult.NOTHING || count <= 0) { // 낫싱은 표현하지 않는다.
             return;
         }
         String gameResultText = String.format(
                 GAME_RESULT_FORMAT,
-                count,
-                GameResultNameText.of(gameResult).text()
+                count, GameResultNameText.of(gameResult).text()
         );
         texts.add(gameResultText);
     }
