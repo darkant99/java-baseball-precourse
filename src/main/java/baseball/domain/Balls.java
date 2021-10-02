@@ -29,7 +29,7 @@ public class Balls {
      * */
     public static Balls random() {
         List<Ball> balls = new ArrayList<>();
-        while(new HashSet<>(balls).size() < 3) {
+        while(balls.size() < 3) {
             addRandomBall(balls);
         }
 
