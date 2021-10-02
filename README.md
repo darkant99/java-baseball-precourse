@@ -18,7 +18,7 @@
 [X] 문자열의 길이를 벗어나면 StringIndexOutOfBoundsException이 발생하는지 확인
 
 [X] Set의 size를 사용해 Set의 크기를 확인
-[] Set에 contains를 사용해 1,2,3 값이 존재하는지 확인
+[X] Set에 contains를 사용해 1,2,3 값이 존재하는지 확인
 [] 입력값을 바꿀 수 있는 contains 테스트 작성
 
 ## 숫자 야구 게임 요구사항
