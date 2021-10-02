@@ -2,9 +2,9 @@ package baseball.domain;
 
 import baseball.exception.InvalidBallsSizeException;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.TreeSet;
 
 public class Balls {
     public static final int NORMAL_SIZE = 3;
@@ -23,7 +23,21 @@ public class Balls {
         }
     }
 
-    public GameResults matches(final Balls balls) {
-        return new GameResults(null);
+    public GameResults matches(final Balls thatBalls) {
+        List<GameResult> gameResults = new ArrayList<>();
+        for (int thisIndex = 0; thisIndex < balls.size(); thisIndex++) {
+            gameResults.add(
+                    match(thatBalls, thisIndex)
+            );
+        }
+
+        return GameResults.of(gameResults);
+    }
+
+    private GameResult match(final Balls thatBalls, final int thisIndex) {
+        Ball currentBall = balls.get(thisIndex);
+        return GameResult.of(
+                thisIndex, thatBalls.balls.indexOf(currentBall)
+        );
     }
 }

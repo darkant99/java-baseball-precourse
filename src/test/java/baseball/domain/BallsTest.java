@@ -16,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 public class BallsTest {
     private Balls newBalls(String ballTemplate) {
         List<Ball> balls = new ArrayList<>();
-        for (String iBallString : ballTemplate.split(",")) {
+        for (String iBallNumberString : ballTemplate.split(",")) {
             Ball iBall = Ball.of(
-                    Integer.parseInt(iBallString)
+                    Integer.parseInt(iBallNumberString)
             );
             balls.add(iBall);
         }
