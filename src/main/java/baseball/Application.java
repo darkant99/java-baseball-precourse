@@ -39,6 +39,7 @@ public class Application {
                 gameResults = userBalls.matches(computerBalls);
                 resultView.printGameResult(gameResults);
             } while(!gameResults.isAllStrike());
+            resultView.printGameEnd();
         }
 
         private Balls inputBalls() {

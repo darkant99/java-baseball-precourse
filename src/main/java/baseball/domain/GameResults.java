@@ -2,10 +2,7 @@ package baseball.domain;
 
 import baseball.exception.InvalidBallsSizeException;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GameResults implements Iterable<Map.Entry<GameResult, Integer>> {
     private final Map<GameResult, Integer> countEachResult;
@@ -27,7 +24,7 @@ public class GameResults implements Iterable<Map.Entry<GameResult, Integer>> {
     }
 
     private static Map<GameResult, Integer> newCountEachResult() {
-        Map<GameResult, Integer> countEachResult = new HashMap<>();
+        Map<GameResult, Integer> countEachResult = new TreeMap<>();
 
         for (GameResult iGameResult : GameResult.values()) {
             countEachResult.put(iGameResult, 0);

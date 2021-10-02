@@ -9,7 +9,8 @@ import java.util.Map;
 
 public class ConsoleResultView implements ResultView {
     private static final String SPACE = " ";
-    private static final String GAME_RESULT_FORMAT = "%d %s";
+    private static final String GAME_RESULT_FORMAT = "%d%s";
+    private static final String GAME_END = "게임 끝";
 
     @Override
     public void printGameResult(final GameResults gameResults) {
@@ -25,6 +26,11 @@ public class ConsoleResultView implements ResultView {
 
         String joinedText = String.join(SPACE, texts);
         System.out.println(joinedText);
+    }
+
+    @Override
+    public void printGameEnd() {
+        System.out.println(GAME_END);
     }
 
     private void addGameResultText(List<String> texts, Map.Entry<GameResult, Integer> entry) {

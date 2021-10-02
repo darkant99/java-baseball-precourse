@@ -7,14 +7,6 @@ import java.util.*;
 
 public class Balls {
     public static final int NORMAL_SIZE = 3;
-    private static final List<Ball> BALL_TEMPLATE;
-
-    static {
-        BALL_TEMPLATE = new ArrayList<>();
-        for (int iBallNumber = Ball.MIN_NUMBER; iBallNumber < Ball.MAX_NUMBER; iBallNumber++) {
-            BALL_TEMPLATE.add(Ball.of(iBallNumber));
-        }
-    }
 
     private final List<Ball> balls;
 
@@ -27,9 +19,9 @@ public class Balls {
     /**
      * 중복된 수 없이 랜덤한 3개의 Ball로 구성된 Balls를 반환한다.
      * */
-    public synchronized static Balls random() {
-        Set<Ball> balls = new HashSet<>();
-        while(balls.size() < 3) {
+    public static Balls random() {
+        List<Ball> balls = new ArrayList<>();
+        while(new HashSet<>(balls).size() < 3) {
             Ball iBall = Ball.of(
                     Randoms.pickNumberInRange(Ball.MIN_NUMBER, Ball.MAX_NUMBER)
             );
