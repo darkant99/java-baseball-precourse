@@ -14,7 +14,7 @@
 
 [X] "(1,2)" 값이 주어졋을때 substring을 활용해 ()를 제거 후 1,2가 반환 되는지 확인
 
-[] "abc" 값이 주어졌을때 charAt을 사용해 특정 위치의 문자를 잘 가져오는지 확인
+[X] "abc" 값이 주어졌을때 charAt을 사용해 특정 위치의 문자를 잘 가져오는지 확인
 [] 문자열의 길이를 벗어나면 StringIndexOutOfBoundsException이 발생하는지 확인
 
 [] Set의 size를 사용해 Set의 크기를 확인

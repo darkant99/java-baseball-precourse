@@ -2,6 +2,8 @@ package study;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,5 +30,17 @@ public class StringTest {
         String actual = "(1,2)";
         assertThat(actual.substring(1, actual.length() - 1))
                 .isEqualTo("1,2");
+    }
+
+    @CsvSource({
+            "abc,0,a",
+            "abc,1,b",
+            "abc,2,c"
+    })
+    @DisplayName("abc 값이 주어졌을때 charAt을 사용해 특정 위치의 문자를 잘 가져오는지 확인")
+    @ParameterizedTest
+    void charAtTest(String actual, int index, char expected) {
+        assertThat(actual.charAt(index))
+                .isEqualTo(expected);
     }
 }
