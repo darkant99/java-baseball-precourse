@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class StringTest {
     @DisplayName("1,2를 ,로 split 했을때 1과 2만을 포함 하는지 확인")
@@ -42,5 +42,17 @@ public class StringTest {
     void charAtTest(String actual, int index, char expected) {
         assertThat(actual.charAt(index))
                 .isEqualTo(expected);
+    }
+
+    @CsvSource({
+            "abc,-1",
+            "abc,3",
+            "abc,4"
+    })
+    @DisplayName("abc 값이 주어졌을때 charAt을 사용할떄 문자열의 길이를 벗어나면 StringIndexOutOfBoundsException이 발생하는지 확인")
+    @ParameterizedTest
+    void charAtStringIndexOutOfBoundsExceptionTest(String actual, int index) {
+        assertThatThrownBy(() -> actual.charAt(index))
+                .isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }
