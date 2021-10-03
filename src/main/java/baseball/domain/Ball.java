@@ -11,12 +11,12 @@ public class Ball {
     public static final int MIN_NUMBER = 1;
     public static final int MAX_NUMBER = 9;
 
-    private static final Map<Integer, Ball> cached;
+    private static final Map<Integer, Ball> CACHED;
 
     static {
-        cached = new HashMap<>();
+        CACHED = new HashMap<>();
         for (int iNumber = MIN_NUMBER; iNumber <= MAX_NUMBER; iNumber++) {
-            cached.put(iNumber, new Ball(iNumber));
+            CACHED.put(iNumber, new Ball(iNumber));
         }
     }
 
@@ -32,11 +32,11 @@ public class Ball {
     public static Ball of(final int number) {
         validateNumberBounds(number);
 
-        return cached.get(number);
+        return CACHED.get(number);
     }
 
     private static void validateNumberBounds(int number) {
-        if (!cached.containsKey(number)) {
+        if (!CACHED.containsKey(number)) {
             throw new OutOfValueBoundsException(ErrorMessage.OUT_OF_BALL_NUMBER_BOUNDS);
         }
     }

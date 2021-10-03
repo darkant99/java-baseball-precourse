@@ -68,14 +68,14 @@ public class Balls {
         List<GameResult> gameResults = new ArrayList<>();
         for (int thisIndex = 0; thisIndex < balls.size(); thisIndex++) {
             gameResults.add(
-                    match(thatBalls, thisIndex)
+                    match(thisIndex, thatBalls)
             );
         }
 
         return GameResults.of(gameResults);
     }
 
-    private GameResult match(final Balls thatBalls, final int thisIndex) {
+    private GameResult match(final int thisIndex, final Balls thatBalls) {
         Ball currentBall = balls.get(thisIndex);
         return GameResult.of(
                 thisIndex, thatBalls.balls.indexOf(currentBall)
